@@ -26,6 +26,7 @@ class UserFactory {
         user
         return user;
     }
+
 }
 
 module.exports = UserFactory;
