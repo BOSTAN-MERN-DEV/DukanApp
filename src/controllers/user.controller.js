@@ -9,7 +9,6 @@ class UserController {
         try {
             const { customer_name, customer_email, customer_password } = req.body;
             const createdUser = await UserService.createUser({ customer_name, customer_email, customer_password });
-            // console.log(createdUser)
             return res.json({ status: API_STATUS_CODES.SUCCESS, message: RESPONSE_MESSAGES.SUCCESS, body: createdUser })
         } catch (err) {
             if (err.code === API_STATUS_CODES.DUPLICATE_ENTRY) {
@@ -23,7 +22,6 @@ class UserController {
     //LOGIN USER
     static async loginUser(req, res) {
         try {
-            // console.log('inside login user controller>>>>>>>>>>>>>>>>>')
             let { customer_email, customer_password } = req.body;
             let response = {};
             const loginUser = await UserService.loginUser({ customer_email, customer_password });

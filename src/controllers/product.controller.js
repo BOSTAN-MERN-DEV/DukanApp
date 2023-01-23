@@ -94,31 +94,3 @@ class ProductController {
 }
 
 module.exports = ProductController;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //UPDATE PRODUCT
-    // static async updateProduct(req, res) {
-    //     try {
-    //         const { product_title, product_price, product_quantity } = req.body;
-    //         const { product_id } = req.params;
-
-    //         const data = await ProductService.updateProduct({ product_title, product_price, product_quantity, product_id });
-    //         res.status(API_STATUS_CODES.SUCCESS).json(data)
-    //     } catch (err) {
-    //         throw err;
-    //     }
-
-    // }
