@@ -1,3 +1,4 @@
+const { body } = require("express-validator");
 const UserService = require("../app/services/user.service");
 const { API_STATUS_CODES, RESPONSE_MESSAGES } = require("../constants/constant")
 const { CONTROLLER_ERROR } = require("../constants/error")
@@ -8,7 +9,7 @@ class UserController {
         try {
             const { customer_name, customer_email, customer_password } = req.body;
             const createdUser = await UserService.createUser({ customer_name, customer_email, customer_password });
-
+            // console.log(createdUser)
             return res.json({ status: API_STATUS_CODES.SUCCESS, message: RESPONSE_MESSAGES.SUCCESS, body: createdUser })
         } catch (err) {
             if (err.code === API_STATUS_CODES.DUPLICATE_ENTRY) {
