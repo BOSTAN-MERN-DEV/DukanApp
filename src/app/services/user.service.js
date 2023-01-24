@@ -8,6 +8,7 @@ class UserService {
             const formatedUser = await UserFactory.createUser(creatUser);
             return formatedUser;
         } catch (err) {
+            throw err;
 
         }
     }

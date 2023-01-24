@@ -9,7 +9,7 @@ class UserRepository {
                 "INSERT INTO customer (customer_name, customer_email, customer_password) VALUES ($1,$2, $3) RETURNING *",
                 [customer_name, customer_email, customer_password]
             );
-            return result.rows;
+            return result.rows[0];
         } catch (err) {
             throw err;
         }
