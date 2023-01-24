@@ -19,6 +19,7 @@ class UserFactory {
         const user = new UserFactory(userInfo, token);
         return user;
     }
+
 }
 
 module.exports = UserFactory;
