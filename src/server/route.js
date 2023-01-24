@@ -9,8 +9,5 @@ app.use("/api/user", userRoute);
 app.use("/api/products", productRoute)
 app.use("/api/order", orderRoute)
 
-
-
-
 module.exports = app;
 
