@@ -1,8 +1,9 @@
 const express = require("express");
 const AdminController = require("../controllers/admin.controller");
 const router = express.Router();
+const authMiddleware = require("../utils/validators/authMiddleware")
 
-router.post("/addseller",AdminController.addNewSeller)
+router.post("/addseller", authMiddleware.verifyToken, AdminController.addNewSeller)
 router.delete("/seller/:id",AdminController.deleteSeller)
 router.delete("/customer/:id",AdminController.deleteCustomer)
 router.get("/allsellers",AdminController.viewallSellers)
