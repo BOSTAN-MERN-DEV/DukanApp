@@ -7,4 +7,4 @@ const router = express.Router();
 router.use("/singup", UserValidator.createUserValidator, UserController.createUser);
 router.use("/login", authMiddleware.verifyToken, UserController.loginUser);
 
-module.exports = router;
+module.exports = router; 
