@@ -3,7 +3,7 @@ const { API_STATUS_CODES, RESPONSE_MESSAGES } = require('../constants/constant')
 
 class ProductController {
 
-    // ADD PRODUCTS METHOD IS YET TO BE ADDED
+    // ADD PRODUCTS METHOD 
     static addProducts = async (req, res) => {
         try {
             const { product_title, product_sku, product_price, product_quantity, product_description, image, brand_name, category_id, seller_id } = req.body;
