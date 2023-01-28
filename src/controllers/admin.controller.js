@@ -24,18 +24,9 @@ class AdminController {
         }
     }
     // DELETE SELLER  RECORD
-    static deleteSeller = async (verifyToken, req, res) => {
+    static deleteSeller = async (req, res) => {
         try {
-            jwt.verify(req.token, process.env.MY_SECRET, (err, authData) => {
-                if (err) {
-                    res.send({ result: "Invalid Token" })
-                } else {
-                    res.json({
-                        message: "seller deleted",
-                        authData
-                    })
-                }
-            })
+           
 
             const { id } = req.params;
             const data = await AdminService.getProductsAgainstSeller(id);
@@ -71,8 +62,18 @@ class AdminController {
         }
     }
     //  VIEW all sellers THAT ARE REGISTERED IN OUR STORE
-    static viewallSellers = async (req, res) => {
+    static viewallSellers = async (verifyToken, req, res) => {
         try {
+            jwt.verify(req.token, process.env.MY_SECRET, (err, authData) => {
+                if (err) {
+                    res.send({ result: "Invalid Token" })
+                } else {
+                    res.json({
+                        message: "seller deleted",
+                        authData
+                    })
+                }
+            })
             const data = await AdminService.viewallSellers();
             return res.json({ message: RESPONSE_MESSAGES.SUCCESS, data });
         } catch (error) {

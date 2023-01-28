@@ -4,7 +4,15 @@ const { API_STATUS_CODES, RESPONSE_MESSAGES } = require('../constants/constant')
 class ProductController {
 
     // ADD PRODUCTS METHOD IS YET TO BE ADDED
-
+    static addProducts = async (req, res) => {
+        try {
+            const { product_title, product_sku, product_price, product_quantity, product_description, image, brand_name, category_id, seller_id } = req.body;
+            const data = await ProductService.addProducts({ product_title, product_sku, product_price, product_quantity, product_image: image, product_description, brand_name, category_id, seller_id });
+            return res.json({ status: API_STATUS_CODES.SUCCESS, message: RESPONSE_MESSAGES.SUCCESS, data })
+        } catch (error) {
+            throw error;
+        }
+    }
 
     //GET ALL PRODUCTS
     static getAllProducts = async (req, res) => {
@@ -50,7 +58,7 @@ class ProductController {
 
         } catch (err) {
             console.log(err)
-            res.json({ status: API_STATUS_CODES.INTERNAL_SERVER_ERROR, message: "An error occured in delteAllproducts API." })
+            res.json({ status: API_STATUS_CODES.INTERNAL_SERVER_ERROR, message: "An error occured while deleting all products." })
         }
 
     }
@@ -67,12 +75,12 @@ class ProductController {
             else {
                 // REMOVE PRODUCT
                 const dataa2 = await ProductService.deleteProductById(product_id);
-                return res.json({ status: API_STATUS_CODES.SUCCESS, message: `Product with id: ${product_id} is deleted.` })
+                return res.json({ status: API_STATUS_CODES.SUCCESS, message: `Product with id: ${product_id} is deleted.`, dataa2 })
             }
 
         } catch (err) {
             console.log(err);
-            res.json({ status: API_STATUS_CODES.INTERNAL_SERVER_ERROR, message: "An error occured in deleteProductById." })
+            res.json({ status: API_STATUS_CODES.INTERNAL_SERVER_ERROR, message: "An error occured while deleting product." })
         }
 
     }
@@ -83,10 +91,10 @@ class ProductController {
             const { category_id, product_title, product_price, product_quantity, product_image, product_description, brand_name } = req.body;
 
             const data = await ProductService.editProduct({ product_title, product_price, product_quantity, product_image, product_description, brand_name, category_id, product_id })
-            res.json({ status: API_STATUS_CODES.SUCCESS, message: "Record updated succesfully.", body: data });
+            return res.json({ status: API_STATUS_CODES.SUCCESS, message: "Record updated succesfully.", body: data });
         } catch (err) {
             console.log(err);
-            res.json({ status: API_STATUS_CODES.INTERNAL_SERVER_ERROR, message: "An error occured in editProduct API." })
+            return res.json({ status: API_STATUS_CODES.INTERNAL_SERVER_ERROR, message: "An error occured while updating product." })
         }
 
     }
