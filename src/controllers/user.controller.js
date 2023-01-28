@@ -7,6 +7,7 @@ class UserController {
     //SINGUP USER
     static async createUser(req, res) {
         try {
+            console.log("create user>>>>>>>>>>>>", req.body);
             const { customer_name, customer_email, customer_password } = req.body;
             const createdUser = await UserService.createUser({ customer_name, customer_email, customer_password });
             return res.json({ status: API_STATUS_CODES.SUCCESS, message: RESPONSE_MESSAGES.SUCCESS, body: createdUser })
@@ -23,6 +24,7 @@ class UserController {
     static async loginUser(req, res) {
         try {
             let { customer_email, customer_password } = req.body;
+
             let response = {};
             const loginUser = await UserService.loginUser({ customer_email, customer_password });
             response.message = loginUser.token ? RESPONSE_MESSAGES.SUCCESS : RESPONSE_MESSAGES.AUTHORIZATION_FAILED;

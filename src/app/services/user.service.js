@@ -17,6 +17,8 @@ class UserService {
     //LOGIN USER
     static async loginUser(data) {
         try {
+            console.log("service>>>>>>>>", data);
+
             const { customer_email, customer_password } = data;
             let foundUser = await UserRepository.findUserByEmail(customer_email);
             foundUser = foundUser.rows[0];
