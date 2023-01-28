@@ -34,7 +34,6 @@ class ProductService {
     // EDIT PRODUCT SERVICE FUNCTION
     static editProduct = async (product_data) => {
         const editProduct = await ProductRepository.editProduct(product_data);
-
         return editProduct;
     }
 }
