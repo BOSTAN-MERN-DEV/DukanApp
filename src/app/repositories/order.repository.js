@@ -14,7 +14,6 @@ class OrderRepository {
     //GET ORDER, PRODUCT AND SELLER INFORMATION
     static async getOrders() {
         try {
-            console.log("inside getOrders")
             const orders = await db.query(`SELECT * FROM products p join order_detail od ON p.product_id = od.product_id join seller s on p.seller_id = s.seller_id`);
 
             return (orders.rows)
