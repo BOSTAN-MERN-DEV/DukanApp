@@ -1,6 +1,19 @@
 const db = require('../../config/config')
 class ProductRepository {
 
+    // ADD PRODUCTS Repo
+    static addProducts = async (data) => {
+        try {
+            const { product_title, product_sku, product_price, product_quantity, product_image, product_description, brand_name, category_id, seller_id } = data;
+            const addProducts = await db.query("INSERT INTO products(product_title,product_sku,product_price,product_quantity,product_image,product_description,brand_name,category_id, seller_id) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *",
+                [product_title, product_sku, product_price, product_quantity, product_image, product_description, brand_name, category_id, seller_id])
+            return addProducts.rows;
+
+        } catch (error) {
+            throw error;
+        }
+    }
+
     // SHOW ALL PRODUCTS
     static async getAllProducts() {
         try {
@@ -119,26 +132,3 @@ class ProductRepository {
 }
 
 module.exports = ProductRepository;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // static async updateProduct(data) {
-    //     const { product_title, product_price, product_quantity, product_id } = data;
-    //     const updatedProduct = await db.query("UPDATE products SET product_title= $1, product_price = $2, product_quantity = $3 WHERE product_id = $4 RETURNING *",
-    //         [product_title, product_price, product_quantity, product_id])
-    //     // console.log("insid repo", updatedProduct.rows[0])
-    //     // const result =  await updatedProduct.rows[0];
-    //     // console.log("insid repo", result)
-    //     return updatedProduct.rows;
-    // }
