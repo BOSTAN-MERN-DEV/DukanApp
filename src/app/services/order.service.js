@@ -13,17 +13,16 @@ class OrderService {
         }
     }
 
-    //GET ALL ORDER
-    static async getAllOrder() {
-        try {
-            const orders = await OrderRepository.getAllOrder();
-            const formateOrder = await OrderFactory.formateOrder(orders);
-
-            return formateOrder;
-        } catch (error) {
-            throw error;
-        }
-    }
+    // //GET ALL ORDER
+    // static async getAllOrder() {
+    //     try {
+    //         const orders = await OrderRepository.getAllOrder();
+    //         const formateOrder = await OrderFactory.formateOrder(orders);
+    //         return formateOrder;
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
 
     //GER ORDER BY ID
     static async orderById(id) {

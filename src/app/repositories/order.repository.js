@@ -41,22 +41,24 @@ class OrderRepository {
         }
     }
 
-    //GET ALL ORDERS
-    static async getAllOrder() {
-        try {
-            const result = await db.query("SELECT * FROM orders");
-            return result.rows;
-        } catch (err) {
+    // //GET ALL ORDERS
+    // static async getAllOrder() {
+    //     try {
+    //         const result = await db.query("SELECT * FROM orders");
+    //         return result.rows;
+    //     } catch (err) {
 
-        }
-    }
+    //     }
+    // }
 
     //GET ORDER BY ID
     static async orderById(id) {
         try {
+            console.log("inside repo", id);
             const result = await db.query(`SELECT * FROM orders JOIN order_detail ON orders.order_id=order_detail.order_id
             JOIN products ON order_detail.product_id=products.product_id
             JOIN customer ON orders.customer_id=customer.customer_id where orders.order_id=$1`, [id]);
+            console.log(result.rows)
             return result.rows;
         } catch (err) {
 
