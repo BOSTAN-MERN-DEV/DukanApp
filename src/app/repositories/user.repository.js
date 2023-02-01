@@ -19,6 +19,7 @@ class UserRepository {
     static async findUserByEmail(customer_email) {
         try {
             const result = await db.query("SELECT * FROM customer WHERE customer_email = $1", [customer_email]);
+
             return result;
         } catch (err) {
             throw err;

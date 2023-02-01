@@ -18,7 +18,7 @@ class ProductRepository {
     // SHOW ALL PRODUCTS
     static async getAllProducts() {
         try {
-            const getAllProducts = await db.query("SELECT * FROM products");
+            const getAllProducts = await db.query("select * from products where isactive = true");
             return getAllProducts.rows;
         } catch (err) {
             throw err;
@@ -65,7 +65,7 @@ class ProductRepository {
     static deleteProductById = async (p_id) => {
         try {
             const product_id = p_id;
-            const deleteProductById = await db.query("DELETE FROM products WHERE product_id = $1",
+            const deleteProductById = await db.query("UPDATE products SET isactive = false WHERE product_id = $1 RETURNING *",
                 [product_id])
             return deleteProductById;
         } catch (err) {
@@ -84,6 +84,10 @@ class ProductRepository {
             let values = [];
 
             // check which fields are present in the request body
+            if (product_data.product_sku) {
+                fields.push("product_sku = $" + (fields.length + 1));
+                values.push(product_data.product_sku);
+            }
             if (product_data.product_title) {
                 fields.push("product_title = $" + (fields.length + 1));
                 values.push(product_data.product_title);
