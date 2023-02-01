@@ -1,6 +1,12 @@
 const ProductRepository = require('../repositories/product.repository')
 class ProductService {
 
+    // ADD PRODUCTS SERVICE FUNCTION
+    static addProducts = async (data) => {
+        const addProducts = await ProductRepository.addProducts(data);
+        return addProducts;
+    }
+
     // SHOW ALL PRODUCTS SERVICE FUNCTION
     static getAllProducts = async () => {
         const getAllProducts = await ProductRepository.getAllProducts();
