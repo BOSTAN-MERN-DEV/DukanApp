@@ -8,7 +8,7 @@ class OrderFactory {
     //PREPARE ORDER
     static async prepareOrder(data) {
         let orders = data.map(item => {
-            return { seller_name: item.seller_name, customer_name: item.customer_name, product_title: item.product_title, order_number: item.order_number }
+            return { order_id: item.order_id, seller_name: item.seller_name, customer_name: item.customer_name, product_title: item.product_title }
         })
 
         return orders;
@@ -25,7 +25,7 @@ class OrderFactory {
     //FORMATE ORDER AND CUSTOMER DATA
     static async formateCustomerOrder(data) {
         const customerOrder = data.map(item => {
-            return ({ customer_name: item.customer_name, customer_email: item.customer_email, order_status: item.order_status, order_number: item.order_number });
+            return ({ order_id: item.order_id, customer_name: item.customer_name, customer_email: item.customer_email, order_status: item.order_status, order_number: item.order_number });
         });
 
         return customerOrder;

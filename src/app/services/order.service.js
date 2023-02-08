@@ -13,16 +13,18 @@ class OrderService {
         }
     }
 
-    // //GET ALL ORDER
-    // static async getAllOrder() {
-    //     try {
-    //         const orders = await OrderRepository.getAllOrder();
-    //         const formateOrder = await OrderFactory.formateOrder(orders);
-    //         return formateOrder;
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // }
+
+    //GET ALL ORDER
+    static async getAllOrder() {
+        try {
+            const orders = await OrderRepository.getAllOrder();
+
+            return orders;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 
     //GER ORDER BY ID
     static async orderById(id) {
@@ -39,7 +41,9 @@ class OrderService {
     //GET ORDERS INFORMATION
     static async getOrders() {
         try {
+            console.log("inside get orders")
             const orders = await OrderRepository.getOrders();
+            // console.log(orders)
             const prepareRes = await OrderFactory.getOrders(orders);
 
             return prepareRes;

@@ -32,7 +32,7 @@ class ProductController {
         try {
             const { product_id } = req.params;
             const data = await ProductService.getProductById(product_id);
-            return res.json({ status: API_STATUS_CODES.SUCCESS, message: RESPONSE_MESSAGES.SUCCESS, data });
+            return res.json({ status: API_STATUS_CODES.SUCCESS, message: RESPONSE_MESSAGES.SUCCESS, body: data });
         } catch (err) {
             throw err;
         }
