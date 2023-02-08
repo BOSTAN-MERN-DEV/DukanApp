@@ -22,6 +22,7 @@ class OrderController {
     static async getAllOrder(req, res) {
         try {
             const orders = await OrderService.getAllOrder();
+
             res.status(API_STATUS_CODES.SUCCESS).json({ message: RESPONSE_MESSAGES.SUCCESS, body: orders })
         } catch (err) {
             if (err.code === API_STATUS_CODES.DUPLICATE_ENTRY) {
@@ -51,6 +52,7 @@ class OrderController {
     //GET ORDERS INFORMATION
     static async getOrders(req, res) {
         try {
+            console.log("inside get order")
             const orders = await OrderService.getOrders();
             res.status(API_STATUS_CODES.SUCCESS).json({ message: RESPONSE_MESSAGES.SUCCESS, body: orders })
         } catch (err) {

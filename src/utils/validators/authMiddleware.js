@@ -11,7 +11,7 @@ class authMiddleware {
 
         } else {
             resp.send({
-                result: "token is not valid"
+                result: "Token is not valid"
             })
         }
     }

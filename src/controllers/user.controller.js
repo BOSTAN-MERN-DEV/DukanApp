@@ -7,16 +7,15 @@ class UserController {
     //SINGUP USER
     static async createUser(req, res) {
         try {
-            console.log("create user>>>>>>>>>>>>", req.body);
             const { customer_name, customer_email, customer_password } = req.body;
             const createdUser = await UserService.createUser({ customer_name, customer_email, customer_password });
             return res.json({ status: API_STATUS_CODES.SUCCESS, message: RESPONSE_MESSAGES.SUCCESS, body: createdUser })
         } catch (err) {
-            if (err.code === API_STATUS_CODES.DUPLICATE_ENTRY) {
+            if (err.code == API_STATUS_CODES.DUPLICATE_ENTRY) {
                 return res.json({ staus: API_STATUS_CODES.ERROR_CODE, message: RESPONSE_MESSAGES.DUPLICATE_ENTRY });
             }
 
-            throw err;
+            return res.json(CONTROLLER_ERROR)
         }
     }
 

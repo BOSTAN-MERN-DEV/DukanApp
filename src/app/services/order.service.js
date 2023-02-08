@@ -17,9 +17,8 @@ class OrderService {
     static async getAllOrder() {
         try {
             const orders = await OrderRepository.getAllOrder();
-            const formateOrder = await OrderFactory.formateOrder(orders);
 
-            return formateOrder;
+            return orders;
         } catch (error) {
             throw error;
         }
@@ -40,7 +39,9 @@ class OrderService {
     //GET ORDERS INFORMATION
     static async getOrders() {
         try {
+            console.log("inside get orders")
             const orders = await OrderRepository.getOrders();
+            // console.log(orders)
             const prepareRes = await OrderFactory.getOrders(orders);
 
             return prepareRes;
